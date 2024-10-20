@@ -2,7 +2,6 @@ package com.banco.sysbank.controller;
 
 import com.banco.sysbank.domain.dto.HistorialTransaccionDTO;
 import com.banco.sysbank.service.HistorialTransaccionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +12,6 @@ import java.util.List;
 public class HistorialTransaccionController {
     private final HistorialTransaccionService historialTransaccionService;
 
-    @Autowired
     public HistorialTransaccionController(HistorialTransaccionService historialTransaccionService) {
         this.historialTransaccionService = historialTransaccionService;
     }
@@ -53,5 +51,11 @@ public class HistorialTransaccionController {
                     return ResponseEntity.ok().<Void>build();
                 })
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/ultimas5/{idCuenta}")
+    public ResponseEntity<List<HistorialTransaccionDTO>> getUltimas5TransaccionesPorCuenta(@PathVariable Long idCuenta) {
+        List<HistorialTransaccionDTO> ultimas5Transacciones = historialTransaccionService.getUltimas5TransaccionesPorCuenta(idCuenta);
+        return ResponseEntity.ok(ultimas5Transacciones);
     }
 }

@@ -2,10 +2,10 @@ package com.banco.sysbank.controller;
 
 import com.banco.sysbank.domain.dto.TransaccionDTO;
 import com.banco.sysbank.service.TransaccionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -13,7 +13,6 @@ import java.util.List;
 public class TransaccionController {
     private final TransaccionService transaccionService;
 
-    @Autowired
     public TransaccionController(TransaccionService transaccionService) {
         this.transaccionService = transaccionService;
     }
@@ -53,5 +52,14 @@ public class TransaccionController {
                     return ResponseEntity.ok().<Void>build();
                 })
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/realizar")
+    public ResponseEntity<TransaccionDTO> realizarTransaccion(
+            @RequestParam Long idCuenta,
+            @RequestParam Long codigoTransaccion,
+            @RequestParam BigDecimal monto) {
+        TransaccionDTO resultado = transaccionService.realizarTransaccion(idCuenta, codigoTransaccion, monto);
+        return ResponseEntity.ok(resultado);
     }
 }

@@ -3,7 +3,6 @@ package com.banco.sysbank.service;
 import com.banco.sysbank.domain.Cliente;
 import com.banco.sysbank.domain.dto.ClienteDTO;
 import com.banco.sysbank.repository.ClienteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +13,6 @@ import java.util.stream.Collectors;
 public class ClienteService {
     private final ClienteRepository clienteRepository;
 
-    @Autowired
     public ClienteService(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }

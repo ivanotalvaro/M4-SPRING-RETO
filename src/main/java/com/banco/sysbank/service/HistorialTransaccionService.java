@@ -7,7 +7,6 @@ import com.banco.sysbank.domain.dto.TransaccionDTO;
 import com.banco.sysbank.repository.HistorialTransaccionRepository;
 import com.banco.sysbank.repository.CuentaRepository;
 import com.banco.sysbank.repository.TransaccionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
@@ -24,7 +23,6 @@ public class HistorialTransaccionService {
     private final CuentaService cuentaService;
     private final TransaccionService transaccionService;
 
-    @Autowired
     public HistorialTransaccionService(HistorialTransaccionRepository historialTransaccionRepository,
                                        CuentaRepository cuentaRepository,
                                        TransaccionRepository transaccionRepository,
@@ -105,6 +103,13 @@ public class HistorialTransaccionService {
         historialTransaccion.setTransaccion(transaccion);
 
         return historialTransaccion;
+    }
+
+    public List<HistorialTransaccionDTO> getUltimas5TransaccionesPorCuenta(Long idCuenta) {
+        return historialTransaccionRepository.findTop5ByCuentaIdOrderByFechaHoraDesc(idCuenta).stream()
+                .limit(5)
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     private Cuenta convertToEntity(CuentaDTO dto) {

@@ -4,7 +4,6 @@ import com.banco.sysbank.domain.*;
 import com.banco.sysbank.domain.dto.ClienteDTO;
 import com.banco.sysbank.domain.dto.CuentaDTO;
 import com.banco.sysbank.repository.CuentaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
@@ -17,7 +16,6 @@ public class CuentaService {
     private final CuentaRepository cuentaRepository;
     private final ClienteService clienteService;
 
-    @Autowired
     public CuentaService(CuentaRepository cuentaRepository, ClienteService clienteService) {
         this.cuentaRepository = cuentaRepository;
         this.clienteService = clienteService;

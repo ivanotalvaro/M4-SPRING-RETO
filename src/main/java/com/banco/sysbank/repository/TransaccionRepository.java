@@ -7,5 +7,5 @@ import java.util.Optional;
 
 @Repository
 public interface TransaccionRepository extends JpaRepository<Transaccion, Long> {
-    Optional<Transaccion> findByTipoTransaccion(String tipoTransaccion);
+    Optional<Transaccion> findByCodigoTransaccion(long codigoTransaccion);
 }

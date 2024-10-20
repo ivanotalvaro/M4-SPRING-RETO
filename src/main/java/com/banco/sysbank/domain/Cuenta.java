@@ -2,6 +2,9 @@ package com.banco.sysbank.domain;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import com.banco.sysbank.domain.dto.TransaccionDTO;
+import com.banco.sysbank.service.TransaccionService;
+import com.banco.sysbank.service.HistorialTransaccionService;
 
 @Entity
 @Table(name = "cuentas")
@@ -58,4 +61,16 @@ public abstract class Cuenta {
 
     // Método abstracto para obtener el tipo de cuenta
     public abstract String getTipoCuenta();
+
+    // Método abstracto para realizar transacción
+    public abstract TransaccionDTO realizarTransaccion(Long codigoTransaccion, BigDecimal monto, TransaccionService transaccionService, HistorialTransaccionService historialTransaccionService);
+
+    // Método para actualizar saldo
+    public void actualizarSaldo(BigDecimal monto) {
+        BigDecimal nuevoSaldo = this.saldo.add(monto);
+        if (nuevoSaldo.compareTo(BigDecimal.ZERO) < 0) {
+            throw new RuntimeException("Saldo insuficiente");
+        }
+        this.saldo = nuevoSaldo;
+    }
 }

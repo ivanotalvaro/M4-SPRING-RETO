@@ -2,7 +2,6 @@ package com.banco.sysbank.controller;
 
 import com.banco.sysbank.domain.dto.CuentaDTO;
 import com.banco.sysbank.service.CuentaService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +12,6 @@ import java.util.List;
 public class CuentaController {
     private final CuentaService cuentaService;
 
-    @Autowired
     public CuentaController(CuentaService cuentaService) {
         this.cuentaService = cuentaService;
     }

@@ -1,10 +1,7 @@
 package com.banco.sysbank.controller;
 
 import com.banco.sysbank.domain.dto.TransaccionDTO;
-<<<<<<< HEAD
 import com.banco.sysbank.exception.SaldoInsuficienteException;
-=======
->>>>>>> upstream/main
 import com.banco.sysbank.service.TransaccionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.List;
 
-<<<<<<< HEAD
+
 @CrossOrigin(origins = "http://localhost:4200")
-=======
->>>>>>> upstream/main
+
 @RestController
 @RequestMapping("/api/transacciones")
 public class TransaccionController {
@@ -70,12 +66,10 @@ public class TransaccionController {
         TransaccionDTO resultado = transaccionService.realizarTransaccion(idCuenta, codigoTransaccion, monto);
         return ResponseEntity.ok(resultado);
     }
-<<<<<<< HEAD
 
     @ExceptionHandler(SaldoInsuficienteException.class)
     public ResponseEntity<String> handleSaldoInsuficienteException(SaldoInsuficienteException ex) {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
-=======
->>>>>>> upstream/main
+
 }

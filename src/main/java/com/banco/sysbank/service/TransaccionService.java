@@ -3,10 +3,7 @@ package com.banco.sysbank.service;
 import com.banco.sysbank.domain.Cuenta;
 import com.banco.sysbank.domain.Transaccion;
 import com.banco.sysbank.domain.dto.TransaccionDTO;
-<<<<<<< HEAD
 import com.banco.sysbank.exception.SaldoInsuficienteException;
-=======
->>>>>>> upstream/main
 import com.banco.sysbank.repository.TransaccionRepository;
 import com.banco.sysbank.repository.CuentaRepository;
 import org.springframework.context.annotation.Lazy;
@@ -55,7 +52,6 @@ public class TransaccionService {
         Cuenta cuenta = cuentaRepository.findById(idCuenta)
                 .orElseThrow(() -> new RuntimeException("Cuenta no encontrada"));
 
-<<<<<<< HEAD
         BigDecimal saldoActual = obtenerSaldoCuenta(idCuenta);
         if (saldoActual.compareTo(monto) < 0) {
             throw new SaldoInsuficienteException("Saldo insuficiente en la cuenta.");
@@ -71,11 +67,6 @@ public class TransaccionService {
         return cuenta.getSaldo();
     }
 
-=======
-        return cuenta.realizarTransaccion(codigoTransaccion, monto, this, historialTransaccionService);
-    }
-
->>>>>>> upstream/main
     public TransaccionDTO findByCodigoTransaccion(Long codigoTransaccion) {
         return transaccionRepository.findByCodigoTransaccion(codigoTransaccion)
                 .map(this::convertToDTO)

@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+<<<<<<< HEAD
 @CrossOrigin(origins = "http://localhost:4200")
+=======
+>>>>>>> upstream/main
 @RestController
 @RequestMapping("/api/cuentas")
 public class CuentaController {
